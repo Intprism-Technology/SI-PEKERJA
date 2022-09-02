@@ -116,20 +116,24 @@ class NodesController extends Controller
             ]);
             // get alert status
             $alert = Alert::where('status', 0)->orderBy('type', 'DESC')->first();
-            if (str_contains($alert->variable, 'CO2')) {
-                $alertResponse_co2 = 1;
-            }
-            if (str_contains($alert->variable, 'CO')) {
-                $alertResponse_co = 1;
-            }
-            if (str_contains($alert->variable, 'CH4')) {
-                $alertResponse_ch4 = 1;
-            }
-            if (str_contains($alert->variable, 'Temperature')) {
-                $alertResponse_temperature = 1;
-            }
-            if (str_contains($alert->variable, 'Humidity')) {
-                $alertResponse_humidity = 1;
+            try {
+                if (str_contains($alert->variable, 'CO2')) {
+                    $alertResponse_co2 = 1;
+                }
+                if (str_contains($alert->variable, 'CO')) {
+                    $alertResponse_co = 1;
+                }
+                if (str_contains($alert->variable, 'CH4')) {
+                    $alertResponse_ch4 = 1;
+                }
+                if (str_contains($alert->variable, 'Temperature')) {
+                    $alertResponse_temperature = 1;
+                }
+                if (str_contains($alert->variable, 'Humidity')) {
+                    $alertResponse_humidity = 1;
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
             }
             return ([
                 'status' => 'success',
