@@ -119,7 +119,7 @@ class NodesController extends Controller
             return ([
                 'status' => 'success',
                 'data' => $report,
-                'alert' => $alert ?? NULL
+                'alert' => $alert
             ]);
         } catch (\Throwable $th) {
             //throw $th;
