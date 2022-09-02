@@ -55,7 +55,7 @@ class NodesController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
+        try {
             // check threshold
             $setting = Setting::first();
             $threshold['co'] = 0;
@@ -121,13 +121,13 @@ class NodesController extends Controller
                 'data' => $report,
                 'alert' => $alert ?? NULL
             ]);
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        //     return ([
-        //         'status' => 'failed',
-        //         'msg' => $th->getMessage()
-        //     ]);
-        // }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return ([
+                'status' => 'failed',
+                'msg' => $th->getTrace()
+            ]);
+        }
     }
     public function storeLabel(Request $request)
     {
