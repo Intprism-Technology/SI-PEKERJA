@@ -154,6 +154,7 @@ class NodesController extends Controller
             ]);
         } catch (\Throwable $th) {
             //throw $th;
+            return $th;
             return ([
                 'status' => 'failed',
                 'msg' => $th->getMessage()
