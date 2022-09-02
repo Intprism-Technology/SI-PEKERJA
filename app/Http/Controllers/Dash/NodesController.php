@@ -121,19 +121,19 @@ class NodesController extends Controller
             // get alert status
             $alert = Alert::where('status', 0)->orderBy('type', 'DESC')->first();
             try {
-                if (str_contains($alert->variable, 'CO2')) {
+                if (str_contains($alert->variable, '"CO2"')) {
                     $alertResponse_co2 = 1;
                 }
-                if (str_contains($alert->variable, 'CO')) {
+                if (str_contains($alert->variable, '"CO"')) {
                     $alertResponse_co = 1;
                 }
-                if (str_contains($alert->variable, 'CH4')) {
+                if (str_contains($alert->variable, '"CH4"')) {
                     $alertResponse_ch4 = 1;
                 }
-                if (str_contains($alert->variable, 'Temperature')) {
+                if (str_contains($alert->variable, '"Temperature"')) {
                     $alertResponse_temperature = 1;
                 }
-                if (str_contains($alert->variable, 'Humidity')) {
+                if (str_contains($alert->variable, '"Humidity"')) {
                     $alertResponse_humidity = 1;
                 }
             } catch (\Throwable $th) {
