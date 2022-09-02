@@ -49,23 +49,26 @@ class AlertsController extends Controller
      */
     public function store(Request $request)
     {
-        $variable = "";
-        if($request->co2){
-            $variable .= "CO2, ";
+        $variable = array();
+        if ($request->co2) {
+            array_push($variable, "CO2");
         }
-        if($request->co){
-            $variable .= "CO, ";
+        if ($request->co) {
+            $threshold['co'] = 1;
+            array_push($variable, "CO");
         }
-        if($request->ch4){
-            $variable .= "CH4, ";
+        if ($request->ch4) {
+            $threshold['ch4'] = 1;
+            array_push($variable, "CH4");
         }
-        if($request->tmp_hum){
-            $variable .= "Temperature, Humidity, ";
+        if ($request->tmp_hum) {
+            array_push($variable, "Temperature");
+            array_push($variable, "Humidity");
         }
 
         Alert::create([
             'type' =>$request->type,
-            'variable' =>substr($variable,0,-2),
+            'variable' =>json_encode($variable),
             'nodes' => 'Operator',
             'status' => 0,
         ]);
