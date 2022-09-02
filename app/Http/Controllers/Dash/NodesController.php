@@ -191,7 +191,7 @@ class NodesController extends Controller
         //
     }
     public function reportAjax($id){
-        $result = NodesReport::join('nodes_labels', 'nodes_reports.node_id', '=', 'nodes_labels.node_id')->get(
+        $result = NodesReport::join('nodes_reports', 'nodes_reports.node_id', '=', 'nodes_labels.node_id')->get(
             [
                 'nodes_reports.alert_id',
                 'nodes_reports.node_id',
