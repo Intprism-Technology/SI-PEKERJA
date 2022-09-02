@@ -89,9 +89,13 @@ class NodesController extends Controller
             $filterIfAlertExist = Alert::where('variable',json_encode($variable))->where('status', 0)->count();
             if($filterIfAlertExist == 0){
                 // set solved old alert
-                Alert::where('nodes', $request->node['id'])->where('status', 0)->update([
-                    'status' => 1
-                ]);
+                try {
+                    Alert::where('nodes', $request->node['id'])->where('status', 0)->update([
+                        'status' => 1
+                    ]);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
                 if($variable != []){
                     // store new alert
                     $alert = Alert::create([
@@ -152,7 +156,7 @@ class NodesController extends Controller
             //throw $th;
             return ([
                 'status' => 'failed',
-                'msg' => $th->getTraceAsString()
+                'msg' => $th->getMessage()
             ]);
         }
     }
