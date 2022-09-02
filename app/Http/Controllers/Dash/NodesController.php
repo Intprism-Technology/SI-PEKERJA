@@ -55,7 +55,7 @@ class NodesController extends Controller
      */
     public function store(Request $request)
     {
-        try {
+        // try {
             // check threshold
             $setting = Setting::first();
             $threshold['co'] = 0;
@@ -121,13 +121,13 @@ class NodesController extends Controller
                 'data' => $report,
                 'alert' => $alert ?? NULL
             ]);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return ([
-                'status' => 'failed',
-                'msg' => $th->getMessage()
-            ]);
-        }
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     return ([
+        //         'status' => 'failed',
+        //         'msg' => $th->getMessage()
+        //     ]);
+        // }
     }
     public function storeLabel(Request $request)
     {
@@ -187,22 +187,27 @@ class NodesController extends Controller
         //
     }
     public function reportAjax($id){
-        $result = NodesReport::join('nodes_reports', 'nodes_labels.node_id', '=', $id)->get(
-            [
-                'nodes_reports.alert_id',
-                'nodes_reports.node_id',
-                'nodes_labels.owner',
-                'nodes_reports.btn_warn',
-                'nodes_reports.co2',
-                'nodes_reports.co',
-                'nodes_reports.ch4',
-                'nodes_reports.temperature',
-                'nodes_reports.humidity',
-                'nodes_reports.lat',
-                'nodes_reports.lng',
-                'nodes_reports.created_at',
-            ]
-        );
+        $hasLabel = NodesLabel::where('node_id', $id)->count();
+        if($hasLabel == 1){
+            $result = NodesReport::join('nodes_labels', 'nodes_reports.node_id', '=', 'nodes_labels.node_id')->where('nodes_reports.node_id', $id)->get(
+                [
+                    'nodes_reports.alert_id',
+                    'nodes_reports.node_id',
+                    'nodes_labels.owner',
+                    'nodes_reports.btn_warn',
+                    'nodes_reports.co2',
+                    'nodes_reports.co',
+                    'nodes_reports.ch4',
+                    'nodes_reports.temperature',
+                    'nodes_reports.humidity',
+                    'nodes_reports.lat',
+                    'nodes_reports.lng',
+                    'nodes_reports.created_at',
+                ]
+            );
+        }else {
+            $result = NodesReport::where('node_id', $id)->get();
+        }
         $akhir = array();
         foreach($result as $index=>$data){
             $akhir[$index]['alert_id'] = $data->alert_id ?? NULL;
