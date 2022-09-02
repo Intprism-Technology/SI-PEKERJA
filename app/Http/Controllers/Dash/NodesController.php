@@ -104,15 +104,15 @@ class NodesController extends Controller
             }
             $report = NodesReport::create([
                 'alert_id' => $alert->id ?? NULL,
-                'node_id' => $request->node['id'] ?? 0,
-                'btn_warn' => $request->node['emergency'] ?? 0,
-                'co2' => $request->gas['co2'] ?? 0,
-                'co' => $request->gas['co'] ?? 0,
-                'ch4' => $request->gas['ch4'] ?? 0,
-                'temperature' => $request->dht['temperature'] ?? 0,
-                'humidity' => $request->dht['humidity'] ?? 0,
-                'lat' => $request->gps['latitude'] ?? 0,
-                'lng' => $request->gps['longitude'] ?? 0,
+                'node_id' => $request->node['id'],
+                'btn_warn' => $request->node['emergency'],
+                'co2' => $request->gas['co2'],
+                'co' => $request->gas['co'],
+                'ch4' => $request->gas['ch4'],
+                'temperature' => $request->dht['temperature'],
+                'humidity' => $request->dht['humidity'],
+                'lat' => $request->gps['latitude'],
+                'lng' => $request->gps['longitude'],
             ]);
             // get alert status
             $alert = Alert::where('status', 0)->orderBy('type', 'DESC')->first();
@@ -125,7 +125,7 @@ class NodesController extends Controller
             //throw $th;
             return ([
                 'status' => 'failed',
-                'msg' => $th->getMessage()
+                'msg' => $th
             ]);
         }
     }

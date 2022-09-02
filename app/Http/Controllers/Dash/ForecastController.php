@@ -60,7 +60,7 @@ class ForecastController extends Controller
         }
         
         if($duration == 'daily'){
-            $report = NodesReport::where('created_at', '>=' , '2022-08-04')->orderBy('created_at', 'ASC')->get([$parameter, 'created_at'])->groupBy(function($date) {
+            $report = NodesReport::where('created_at', '>=' , Carbon::now())->orderBy('created_at', 'ASC')->get([$parameter, 'created_at'])->groupBy(function($date) {
                 return Carbon::parse($date->created_at)->format('Y-m-d H');
             });
         }else if($duration == 'weekly' OR $duration == 'monthly'){
