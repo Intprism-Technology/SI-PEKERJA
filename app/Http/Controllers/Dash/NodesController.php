@@ -125,7 +125,7 @@ class NodesController extends Controller
             //throw $th;
             return ([
                 'status' => 'failed',
-                'msg' => $th->getTraceAsString()
+                'msg' => $th->getMessage()
             ]);
         }
     }
