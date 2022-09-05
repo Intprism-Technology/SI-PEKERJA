@@ -92,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="position-relative d-inline-block">
+                <!-- <div class="position-relative d-inline-block">
                     <button class="header-icon btn btn-empty" type="button" id="notificationButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="simple-icon-bell"></i>
@@ -151,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <button class="header-icon btn btn-empty d-none d-sm-inline-block" type="button" id="fullScreenButton">
                     <i class="simple-icon-size-fullscreen"></i>
