@@ -366,7 +366,7 @@
             searchPlaceholder: "Search...",
             lengthMenu: "Items Per Page _MENU_"
             },
-            order: [4, 'asc'],
+            order: [0, 'desc'],
         });
     </script>
     @if(str_contains(Route::currentRouteName(), 'dashboard.'))
