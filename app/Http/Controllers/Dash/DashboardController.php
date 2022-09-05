@@ -26,7 +26,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $alerts = Alert::orderBy('created_at', 'ASC')->take(10)->get();
+        $alerts = Alert::orderBy('created_at', 'DESC')->take(10)->get();
         $status = Alert::orderBy('type', 'DESC')->where('status', 0)->first();
         $nodes = NodesReport::get()->unique('node_id')->count();
         $nodesConnected = NodesReport::whereRaw('created_at >= now() - interval 5 minute')->get()->unique('node_id')->count();
