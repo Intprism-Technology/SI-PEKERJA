@@ -27,11 +27,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return NodesReport::where('created_at', '>=', Carbon::now()->subMinutes(5))->get()->unique('node_id');
         $alerts = Alert::orderBy('created_at', 'DESC')->take(10)->get();
         $status = Alert::orderBy('type', 'DESC')->where('status', 0)->first();
         $nodes = NodesReport::get()->unique('node_id')->count();
-        $nodesConnected = NodesReport::whereDate('created_at', '<=', Carbon::now()->subMinutes(5))->get()->unique('node_id')->count();
+        $nodesConnected = NodesReport::where('created_at', '>=', Carbon::now()->subMinutes(5))->get()->unique('node_id')->count();
         $alertReport = new Alert;
         return view('dash.index', compact(
             'alerts',
