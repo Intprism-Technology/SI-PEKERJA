@@ -28,3 +28,6 @@ Route::get('/nodes_report', [App\Http\Controllers\Dash\NodesController::class, '
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/reportTest', function (Request $request) {
+    return $request;
+});
