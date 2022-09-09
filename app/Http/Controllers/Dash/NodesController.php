@@ -257,4 +257,7 @@ class NodesController extends Controller
         }
         return DataTables::of($akhir)->toJson();
     }
+    public function reportTest( Request $request ){
+        return $request;
+    }
 }

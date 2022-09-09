@@ -24,10 +24,8 @@ Route::get('/alert', function () {
     return $result;
 });
 Route::post('/report', [App\Http\Controllers\Dash\NodesController::class, 'store']);
+Route::post('/reportTest', [App\Http\Controllers\Dash\NodesController::class, 'reportTest']);
 Route::get('/nodes_report', [App\Http\Controllers\Dash\NodesController::class, 'nodes_report']);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
-Route::post('/reportTest', function (Request $request) {
-    return $request;
 });
