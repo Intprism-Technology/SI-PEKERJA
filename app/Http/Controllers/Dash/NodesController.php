@@ -144,7 +144,7 @@ class NodesController extends Controller
                 'data' => $report,
                 'alert' => $alert ?? NULL,
                 'response' => [
-                    'nodes' => $alert->nodes,
+                    'nodes' => $alert->nodes ?? 0,
                     'co2' => $alertResponse_co2 ?? 0,
                     'co' => $alertResponse_co ?? 0,
                     'ch4' => $alertResponse_ch4 ?? 0,
