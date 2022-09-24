@@ -119,7 +119,7 @@ class NodesController extends Controller
                 'lng' => $request->gps['longitude'],
             ]);
             // get alert status
-            $alert = Alert::where('status', 0)->orderBy('type', 'DESC')->first();
+            $alert = Alert::where('status', 0)->where('node_id', $request->node['id'])->orderBy('type', 'DESC')->first();
             try {
                 if (str_contains($alert->variable, '"CO2"')) {
                     $alertResponse_co2 = 1;
