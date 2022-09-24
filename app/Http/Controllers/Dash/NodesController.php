@@ -144,6 +144,7 @@ class NodesController extends Controller
                 'data' => $report,
                 'alert' => $alert ?? NULL,
                 'response' => [
+                    'nodes' => $alert->nodes,
                     'co2' => $alertResponse_co2 ?? 0,
                     'co' => $alertResponse_co ?? 0,
                     'ch4' => $alertResponse_ch4 ?? 0,
@@ -256,8 +257,5 @@ class NodesController extends Controller
             $akhir[$index]['created_at'] = $data->created_at."'";
         }
         return DataTables::of($akhir)->toJson();
-    }
-    public function reportTest( Request $request ){
-        return $request;
     }
 }
