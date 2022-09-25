@@ -90,9 +90,9 @@ class NodesController extends Controller
             if($filterIfAlertExist == 0){
                 // set solved old alert
                 try {
-                    Alert::where('nodes', (string) $request->node['id'])->where('status', 0)->update([
-                        'status' => 1
-                    ]);
+                    // Alert::where('nodes', (string) $request->node['id'])->where('status', 0)->update([
+                    //     'status' => 1
+                    // ]);
                 } catch (\Throwable $th) {
                     //throw $th;
                 }
