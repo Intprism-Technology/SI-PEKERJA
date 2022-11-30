@@ -86,7 +86,7 @@ class NodesController extends Controller
             }
             
             //jika var sama, status 0
-            $filterIfAlertExist = Alert::where('variable',json_encode($variable))->where('status', 0)->count();
+            $filterIfAlertExist = Alert::where('variable',json_encode($variable))->where('nodes', $request->node['id'])->where('status', 0)->count();
             if($filterIfAlertExist == 0){
                 // set solved old alert
                 try {
